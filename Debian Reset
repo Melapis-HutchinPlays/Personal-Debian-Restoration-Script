@@ -1,0 +1,95 @@
+#!/bin/bash
+set -e
+clear
+
+echo "--- Prepping System ---"
+sleep 3
+export DEBIAN_FRONTEND=noninteractive
+sudo apt update 
+sudo DEBIAN_FRONTEND=noninteractive apt full-upgrade -y
+sleep 3
+clear
+
+echo "--- System Utilities & Tools ---"
+sleep 3
+time sudo DEBIAN_FRONTEND=noninteractive apt install -y rsync htop btop wget curl net-tools fdisk rfkill progress strace software-properties-common tmux mc ufw ncdu tree inxi fail2ban iproute2 aptitude
+sleep 3
+clear
+
+echo "--- Development Tools ---"
+sleep 3
+time sudo DEBIAN_FRONTEND=noninteractive apt install -y vim-gtk3 ccache git git-lfs gcc clang cmake python3 python3-pip docker.io
+sleep 3
+clear
+
+echo "--- Multimedia & Fun ---"
+sleep 3
+time sudo DEBIAN_FRONTEND=noninteractive apt install -y cowsay lolcat fortune-mod fortunes fortunes-debian-hints vlc audacity ffmpeg cheese peek
+sleep 3
+clear
+
+echo "--- Installing yt-dlp ---"
+sleep 3
+time sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp 
+time sudo chmod a+rx /usr/local/bin/yt-dlp
+sleep 3
+clear
+
+echo "--- Installing Termninal Productivity Tools ---"
+sleep 3
+time sudo DEBIAN_FRONTEND=noninteractive apt install -y zsh neofetch nano
+sleep 3
+clear
+
+echo "--- Installing Node.js via nvm ---"
+sleep 3
+unset NVM_DIR
+rm -rf "$HOME/.nvm"
+rm -rf "$HOME/.config/nvm"
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+export NVM_DIR="$HOME/.nvm" 
+if [ -s "$NVM_DIR/nvm.sh" ]; then 
+  \. "$NVM_DIR/nvm.sh" # Load from standard location
+elif [ -s "$HOME/.config/nvm/nvm.sh" ]; then
+  # If not in standard, check the new XDG location and load from there
+  export NVM_DIR="$HOME/.config/nvm"
+  \. "$NVM_DIR/nvm.sh"
+else
+  echo "FATAL: nvm.sh script not found in expected locations. Cannot continue."
+  exit 1
+fi
+echo "Installing the latest LTS version of Node.js..."
+nvm install --lts
+echo "Node.js version check:"
+node -v
+echo "NPM version check:"
+npm -v
+sleep 3
+clear
+
+echo "--- Installing Gemini CLI ---"
+sleep 3
+time npm install -g @google/gemini-cli
+sleep 3
+clear
+
+echo "--- Restoration Script Finishing ---"
+sudo DEBIAN_FRONTEND=noninteractive apt update
+sudo DEBIAN_FRONTEND=noninteractive apt full-upgrade -y
+sleep 3
+clear
+
+echo "--- Clean Up and Purging ---"
+sleep 3
+sudo apt autoremove --purge -y
+sudo apt autoclean
+sleep 3
+clear
+
+echo "--- Verifying Gemini CLI Authorization ---"
+sleep 1
+echo "--- Open a NEW terminal and run 'gemini' to authorize Gemini CLI. ---"
+sleep 3
+echo "--- Good day Sir ---"
+sleep 3
+clear
