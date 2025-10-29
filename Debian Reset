@@ -12,7 +12,7 @@ clear
 
 echo "--- System Utilities & Tools ---"
 sleep 3
-time sudo DEBIAN_FRONTEND=noninteractive apt install -y rsync htop btop wget curl net-tools fdisk rfkill progress strace software-properties-common tmux mc ufw ncdu tree inxi fail2ban iproute2 aptitude
+time sudo DEBIAN_FRONTEND=noninteractive apt install -y rsync htop btop wget curl net-tools fdisk rfkill progress strace tmux mc ufw ncdu tree inxi fail2ban iproute2 aptitude
 sleep 3
 clear
 
@@ -37,7 +37,7 @@ clear
 
 echo "--- Installing Termninal Productivity Tools ---"
 sleep 3
-time sudo DEBIAN_FRONTEND=noninteractive apt install -y zsh neofetch nano
+time sudo DEBIAN_FRONTEND=noninteractive apt install -y zsh nano
 sleep 3
 clear
 
